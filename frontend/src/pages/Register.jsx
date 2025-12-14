@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/authContext';
-import AuthInput from '../components/UI/AuthInput/AuthInput';
+import React, {useContext} from 'react';
+import AuthInput from "../components/UI/AuthInput/AuthInput.jsx";
 import AuthButton from "../components/UI/AuthButton/AuthButton.jsx";
+import {AuthContext} from "../context/AuthContext.js";
 
-const Login = () => {
+const Register = () => {
     const {user, setUser} = useContext(AuthContext);
 
     return (
@@ -15,7 +15,7 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column'
         }}>
-            <h1 style={{marginBottom: 10}}>Страница входа</h1>
+            <h1 style={{marginBottom: 10}}>Страница регистрации</h1>
             <AuthInput
                 type="text"
                 placeholder="Введите логин"
@@ -28,9 +28,11 @@ const Login = () => {
                 value={user.password}
                 onChange={e => setUser({...user, password: e.target.value})}
             />
-            <AuthButton>Вход</AuthButton>
+            <AuthButton style={{
+                padding: '2px 48px'
+            }}>Регистрация</AuthButton>
         </div>
-    );
-};
+    )
+}
 
-export default Login;
+export default Register;
