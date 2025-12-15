@@ -2,9 +2,14 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../context/authContext';
 import AuthInput from '../components/UI/AuthInput/AuthInput';
 import AuthButton from "../components/UI/AuthButton/AuthButton.jsx";
+import AuthService from "../API/AuthService.js";
 
 const Login = () => {
     const {user, setUser} = useContext(AuthContext);
+
+    const loginUser = async () => {
+        await AuthService.LoginUser(user);
+    }
 
     return (
         <div style={{
@@ -28,7 +33,7 @@ const Login = () => {
                 value={user.password}
                 onChange={e => setUser({...user, password: e.target.value})}
             />
-            <AuthButton>Вход</AuthButton>
+            <AuthButton onClick={loginUser}>Вход</AuthButton>
         </div>
     );
 };

@@ -2,9 +2,14 @@ import React, {useContext} from 'react';
 import AuthInput from "../components/UI/AuthInput/AuthInput.jsx";
 import AuthButton from "../components/UI/AuthButton/AuthButton.jsx";
 import {AuthContext} from "../context/AuthContext.js";
+import AuthService from '../API/AuthService.js';
 
 const Register = () => {
     const {user, setUser} = useContext(AuthContext);
+
+    const registerUser = async () => {
+        await AuthService.RegisterUser(user);
+    }
 
     return (
         <div style={{
@@ -30,7 +35,8 @@ const Register = () => {
             />
             <AuthButton style={{
                 padding: '2px 48px'
-            }}>Регистрация</AuthButton>
+
+            }} onClick={registerUser}>Регистрация</AuthButton>
         </div>
     )
 }
